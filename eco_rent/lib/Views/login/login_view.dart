@@ -1,6 +1,6 @@
 import 'package:eco_rent/main.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -9,6 +9,7 @@ void main() {
 class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       body: Center(
         child: Container(
@@ -28,7 +29,13 @@ class Login extends StatelessWidget {
                 height: 35,
               ),
               buildTextField('Username'),
+              SizedBox(
+                height: 10,
+              ),
               buildTextField('Email Address'),
+              SizedBox(
+                height: 15,
+              ),
               buildLoginButton(),
             ],
           ),
@@ -40,10 +47,24 @@ class Login extends StatelessWidget {
   buildTextField(String labelText) {
     return TextField(
       decoration: InputDecoration(
-        labelText: labelText, border: OutlineInputBorder()
+        labelText: labelText,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(10.0),
+          ),
+        ),
+        filled: true,
+        fillColor: Colors.grey[200],
       ),
     );
   }
 
-  buildLoginButton() {}
+  buildLoginButton() {
+    return ElevatedButton(
+        onPressed: () {},
+        child: Text(
+          'Login',
+          style: TextStyle(fontSize: 18.0),
+        ));
+  }
 }

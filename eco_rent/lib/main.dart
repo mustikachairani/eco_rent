@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider(create: (context) => OrderModel(),),
     ],
     child: MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Login(),
     ),
     );
