@@ -1,6 +1,8 @@
 import 'package:eco_rent/main.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../view_models/login_view_model.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,7 +11,8 @@ void main() {
 class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    
+    final loginViewModel = Provider.of<LoginViewModel>(context);
+
     return Scaffold(
       body: Center(
         child: Container(
@@ -36,7 +39,7 @@ class Login extends StatelessWidget {
               SizedBox(
                 height: 15,
               ),
-              buildLoginButton(),
+              buildLoginButton(loginViewModel, context),
             ],
           ),
         ),
@@ -59,12 +62,12 @@ class Login extends StatelessWidget {
     );
   }
 
-  buildLoginButton() {
+  Widget buildLoginButton(LoginViewModel loginViewModel, BuildContext context) {
     return ElevatedButton(
-        onPressed: () {},
-        child: Text(
-          'Login',
-          style: TextStyle(fontSize: 18.0),
-        ));
+      onPressed: () async {
+        await loginViewModel.login(context);
+      },
+      child: Text('Login'),
+    );
   }
 }

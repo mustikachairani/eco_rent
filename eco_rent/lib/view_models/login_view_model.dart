@@ -2,17 +2,19 @@ import 'package:eco_rent/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class LoginViewModel extends ChangeNotifier {
-  UserModel user = UserModel();
-
-  void updateUsername(){
-
+ Future<void> login(BuildContext context) async {
+    // Logika untuk proses login
+    print('Login successful!');
+    
+    // Navigasi ke halaman home
+    Navigator.pushReplacementNamed(context, '/home');
   }
 
-   void updateEmailAddress(){
-    
-  }
+  void logout(BuildContext context) {
+    // Lakukan logika logout di sini, seperti membersihkan state
+    var username = null;
 
-   void onLoginButtonPressed(){
-    
+    // Navigasi ke halaman login
+    Navigator.pushReplacementNamed(context, '/login');
   }
 }
