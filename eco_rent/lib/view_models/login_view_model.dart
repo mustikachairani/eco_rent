@@ -12,7 +12,7 @@ class LoginViewModel extends ChangeNotifier {
     
   }
 
-   void omLoginButtonPressed(){
+   void onLoginButtonPressed(){
     
   }
 }
