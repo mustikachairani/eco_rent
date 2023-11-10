@@ -16,6 +16,8 @@ class LoginViewKuKu extends StatefulWidget {
 
 class _LoginViewKuKuState extends State<LoginViewKuKu> {
   bool isLoading = false;
+  bool showEmailError = false;
+  bool showPasswordError = false;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -24,7 +26,33 @@ class _LoginViewKuKuState extends State<LoginViewKuKu> {
     // Menetapkan bahwa proses login sedang berlangsung
     setState(() {
       isLoading = true;
+      showEmailError =
+          false; // Set showEmailError ke false setiap kali login diinisiasi
+      showPasswordError =
+          false; // Set showPasswordError ke false setiap kali login diinisiasi
     });
+
+    // Validasi email harus disertai dengan "@gmail.com"
+    if (!emailController.text.endsWith('@gmail.com')) {
+      setState(() {
+        showEmailError =
+            true; // Set showEmailError ke true jika validasi email gagal
+        isLoading =
+            false; // Set isLoading ke false untuk menghentikan proses login
+      });
+      return; // Hentikan eksekusi lebih lanjut jika validasi email gagal
+    }
+
+    // Validasi password minimal 5 karakter atau angka
+    if (passwordController.text.length <= 5) {
+      setState(() {
+        showPasswordError =
+            true; // Set showPasswordError ke true jika validasi password gagal
+        isLoading =
+            false; // Set isLoading ke false untuk menghentikan proses login
+      });
+      return; // Hentikan eksekusi lebih lanjut jika validasi password gagal
+    }
 
     // Panggil fungsi login dari ViewModel untuk mendapatkan UserModel
     User? user = await widget.viewModel.loginUser(
@@ -35,6 +63,8 @@ class _LoginViewKuKuState extends State<LoginViewKuKu> {
     // Menetapkan bahwa proses login telah selesai
     setState(() {
       isLoading = false;
+      showPasswordError =
+          false; // Set showPasswordError ke false setelah proses login selesai
     });
 
     // Handle hasil login menggunakan metode di ViewModel
@@ -79,6 +109,7 @@ class _LoginViewKuKuState extends State<LoginViewKuKu> {
                 hintText: "Email",
                 obsecureText: false,
                 controller: emailController,
+                showError: showEmailError,
               ),
               SizedBox(
                 height: 10.0,
@@ -88,6 +119,7 @@ class _LoginViewKuKuState extends State<LoginViewKuKu> {
                 hintText: "Password",
                 obsecureText: true,
                 controller: passwordController,
+                showError: showPasswordError,
               ),
               SizedBox(height: 16), // Spasi antara TextField
               // Tombol untuk melakukan login

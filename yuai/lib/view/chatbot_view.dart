@@ -88,7 +88,7 @@ class _ChatBotPageState extends State<ChatBotPage> {
             // Container untuk menampilkan respon dari ChatBot
             Container(
               width: 1000.0, // Lebar Container
-              height: 200.0, // Tinggi Container
+              height: 350.0, // Tinggi Container
               decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.black, // Warna border

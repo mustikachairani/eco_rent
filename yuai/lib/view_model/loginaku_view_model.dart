@@ -14,7 +14,7 @@ class LoginViewKuKuModel {
     }
 
     // Jika email dan password memenuhi persyaratan, kembalikan UserModel sebagai imitasi login sukses
-    return User(password: '12345', email: 'rani@gmail.com');
+    return User(password: '123456', email: 'rani@gmail.com');
   }
 
   void handleLoginResult(User? user, BuildContext context) {
